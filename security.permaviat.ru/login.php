@@ -45,6 +45,7 @@
 					<a href="regin.php">Регистрация</a>
 					<br><a href="recovery.php">Забыли пароль?</a>
 					<input type="button" class="button" value="Войти" onclick="LogIn()"/>
+					<center><div class="g-recaptcha" data-sitekey="6LduUPAqAAAAANDkoqFHGjXpwWUpobo39DpldICL"></div></center>
 					<img src = "img/loading.gif" class="loading"/>
 				</div>
 				
@@ -118,5 +119,6 @@
 			}
 			
 		</script>
+		<script src="https://www.google.com/recaptcha/api.js" async defer ></script>
 	</body>
 </html>
