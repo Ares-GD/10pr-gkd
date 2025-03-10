@@ -12,6 +12,12 @@
 			}
 		}
  	}
+	 var captcha = grecaptcha.getResponse();
+	 if(captcha.lenght){
+		 let Data = new FormData();
+		 Data.append('g-recaptcha-response', captcha);
+		 Ajax("url", Data, SignIn);
+	 }
 ?>
 <html>
 	<head> 
