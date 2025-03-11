@@ -1,6 +1,14 @@
 <?php
+	
+	session_start();
+	include("../settings/connect_datebase.php");
 	include("../recaptcha/autoload.php");
 	$secret = '6LduUPAqAAAAANDkoqFHGjXpwWUpobo39DpldICL';
+	
+	$login = $_POST['login'];
+	$password = $_POST['password'];
+	
+	$query_user = $mysqli->query("SELECT * FROM `users` WHERE `login`='".$login."' AND `password`= '".$password."';");
 	if(isset($_POST['g-recaptcha-response'])){
 		$recaptcha = new \ReCaptcha\ReCaptcha($secret);
 		$resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
@@ -11,14 +19,6 @@
 		}
 		else echo "Пользователь не распознан";
 	}else echo "Нет ответа от капчи";
-	session_start();
-	include("../settings/connect_datebase.php");
-	
-	$login = $_POST['login'];
-	$password = $_POST['password'];
-	
-	// ищем пользователя
-	$query_user = $mysqli->query("SELECT * FROM `users` WHERE `login`='".$login."' AND `password`= '".$password."';");
 	
 	$id = -1;
 	while($user_read = $query_user->fetch_row()) {
